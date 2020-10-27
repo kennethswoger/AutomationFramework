@@ -11,7 +11,7 @@ public class NegativeTests {
 
     @Test
     public void negativeUsernameTest() throws InterruptedException {
-        System.out.println("Starting loginTest");
+        System.out.println("Starting incorrect loginTest");
 
         //  create driver
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
