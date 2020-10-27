@@ -9,6 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <name>Selenium Tut</name>
 
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <name>bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -16,7 +24,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.3.0</version>
-           <!-- <scope>test</scope>-->
+            <!-- <scope>test</scope>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -25,6 +33,7 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
+
 
     </dependencies>
 
@@ -52,6 +61,7 @@
                     </suiteXmlFiles>
                 </configuration>-->
             </plugin>
+
 
         </plugins>
     </build>
