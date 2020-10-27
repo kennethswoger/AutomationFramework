@@ -53,13 +53,15 @@ public class PositiveTests {
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl, "Actually page url not same as expected");
 
-
         //    logout button visible
         WebElement logoutButton = driver.findElement(By.xpath("//a[@href='/logout']"));
+        Assert.assertTrue(logoutButton.isDisplayed(), "Is not displayed");
 
         //    successful login message
         WebElement successMessage = driver.findElement(By.xpath("//div[@class='flash success']"));
-        successMessage.isDisplayed();
+        String expectedMessage = "You logged into a secure area!";
+        String actualMessage = successMessage.getText();
+        Assert.assertTrue(actualMessage.contains(expectedMessage), "Actual message does not contain expected message. \nActual Message: " + actualMessage + "\nExpected Message: " + expectedMessage);
 
         // Close browser
         driver.quit();
