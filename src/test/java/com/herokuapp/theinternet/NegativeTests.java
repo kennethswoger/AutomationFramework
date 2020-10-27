@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class NegativeTests {
 
     @Test
-    public void negativeUsernameTest() throws InterruptedException {
+    public void incorrectUsernameTest() throws InterruptedException {
         System.out.println("Starting incorrect loginTest");
 
         //  create driver
@@ -20,18 +20,14 @@ public class NegativeTests {
         //  maximize window
         driver.manage().window().maximize();
 
-
         Thread.sleep(3000);
-
 
         //  open test page
         String url = "https://the-internet.herokuapp.com/login";
         driver.get(url);
         System.out.println("Page is opened.");
 
-
         Thread.sleep(3000);
-
 
         //  enter username
         WebElement username = driver.findElement(By.id("username"));
@@ -45,7 +41,6 @@ public class NegativeTests {
         WebElement loginButton = driver.findElement(By.xpath("//button[@class='radius']"));
         WebElement logingButton = driver.findElement(By.tagName("button"));
         loginButton.click();
-
 
 //    verifications:
         //    new url
@@ -65,6 +60,48 @@ public class NegativeTests {
 
         // Close browser
         driver.quit();
-
     }
+
+    @Test
+    public void incorrectPasswordTest() throws InterruptedException {
+            System.out.println("Starting incorrect password");
+
+            //  create driver
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+            WebDriver driver = new ChromeDriver();
+
+            //  maximize window
+            driver.manage().window().maximize();
+
+            Thread.sleep(3000);
+
+            //  open test page
+            String url = "https://the-internet.herokuapp.com/login";
+            driver.get(url);
+            System.out.println("Page is opened.");
+
+            Thread.sleep(3000);
+
+            //  enter username
+            WebElement username = driver.findElement(By.id("username"));
+            username.sendKeys("tomsmith");
+
+            //  enter password
+            WebElement password = driver.findElement(By.id("password"));
+            password.sendKeys("Swrong Password");
+
+            //  click login button
+            WebElement loginButton = driver.findElement(By.xpath("//button[@class='radius']"));
+            WebElement logingButton = driver.findElement(By.tagName("button"));
+            loginButton.click();
+
+            //    successful login message
+            WebElement successMessage = driver.findElement(By.id("flash"));
+            String expectedMessage = "Your password is invalid!";
+            String actualMessage = successMessage.getText();
+            Assert.assertTrue(actualMessage.contains(expectedMessage), "Actual message does not contain expected message. \nActual Message: " + actualMessage + "\nExpected Message: " + expectedMessage);
+
+            // Close browser
+            driver.quit();
+        }
 }
